@@ -8,11 +8,11 @@ interface StateStorage {
 
 type CustomObject = Record<string, any>
 
-export function isObject(item?: CustomObject | CustomObject[]) {
+function isObject(item?: CustomObject | CustomObject[]) {
   return item && typeof item === "object" && !Array.isArray(item);
 }
 
-export function mergeDeep(
+function mergeDeep(
   target: CustomObject,
   ...sources: CustomObject[]
 ) {
