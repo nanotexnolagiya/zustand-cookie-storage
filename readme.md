@@ -2,7 +2,7 @@
 
 [![NPM Version](https://img.shields.io/npm/v/zustand-cookie-storage.svg)](https://www.npmjs.com/package/zustand-cookie-storage)
 [![License](https://img.shields.io/npm/l/zustand-cookie-storage.svg)](https://www.npmjs.com/package/zustand-cookie-storage)
-[![Build Status](https://img.shields.io/github/actions/workflow/status/yourusername/zustand-cookie-storage/ci.yml)](https://github.com/yourusername/zustand-cookie-storage/actions)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/yourusername/zustand-cookie-storage/ci.yml)](https://github.com/nanotexnolagiya/zustand-cookie-storage/actions)
 
 `zustand-cookie-storage` is a plugin for [Zustand](https://github.com/pmndrs/zustand) that allows you to persist your store's state in cookies. This package makes it easy to maintain state across sessions and browser tabs.
 
