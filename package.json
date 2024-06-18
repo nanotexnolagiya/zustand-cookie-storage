@@ -1,0 +1,32 @@
+{
+  "name": "zustand-cookie-storage",
+  "version": "1.0.0",
+  "description": "Cookie storage for storing zustand's storage state",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nanotexnolagiya/zustand-cookie-storage.git"
+  },
+  "keywords": [
+    "zustand",
+    "cookie",
+    "storage",
+    "persist"
+  ],
+  "author": "Islomkhuja",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nanotexnolagiya/zustand-cookie-storage/issues"
+  },
+  "homepage": "https://github.com/nanotexnolagiya/zustand-cookie-storage#readme",
+  "dependencies": {
+    "js-cookie": "^3.0.5"
+  },
+  "devDependencies": {
+    "@types/js-cookie": "^3.0.6",
+    "typescript": "^5.4.5"
+  }
+}
