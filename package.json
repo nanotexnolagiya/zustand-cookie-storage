@@ -1,7 +1,7 @@
 {
   "name": "zustand-cookie-storage",
   "version": "1.0.0",
-  "description": "Cookie storage for storing zustand's storage state",
+  "description": "`zustand-cookie-storage` is a utility library designed to enhance the state management capabilities of Zustand by persisting state in cookies. This package enables seamless storage and retrieval of state across sessions and browser tabs using cookies as a storage medium. It is particularly useful for maintaining user preferences, session information, and other critical state that should persist even after the user closes or refreshes the browser.",
   "main": "index.js",
   "scripts": {
     "build": "npx tsc"
