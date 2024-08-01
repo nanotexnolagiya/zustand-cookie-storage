@@ -21,6 +21,7 @@ Install the package via npm or yarn:
 npm install zustand-cookie-storage
 # or
 yarn add zustand-cookie-storage
+```
 
 ## Example
 ```javascript
