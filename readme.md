@@ -21,3 +21,31 @@ Install the package via npm or yarn:
 npm install zustand-cookie-storage
 # or
 yarn add zustand-cookie-storage
+
+## Example
+```javascript
+import { create } from "zustand";
+import { createJSONStorage, persist } from "zustand/middleware";
+import { cookieStorage } from "zustand-cookie-storage";
+
+const useMainStore = create(
+  persist(
+    (...args) => ({
+      ...locationSlice(...args),
+      ...profileSlice(...args),
+    }),
+    {
+      name: "main",
+      storage: createJSONStorage(() => cookieStorage),
+      partialize(state) {
+        return {
+          basketIds: state.basketIds
+        };
+      },
+    }
+  )
+);
+export default useMainStore;
+```
+---
+![An Example](./example-of-cookie.png)
