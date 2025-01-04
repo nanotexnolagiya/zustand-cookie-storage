@@ -1,5 +1,3 @@
-import Cookies from "js-cookie";
-
 interface StateStorage {
   getItem: (name: string) => string | null | Promise<string | null>;
   setItem: (name: string, value: string) => void | Promise<void>;
@@ -65,17 +63,54 @@ function setNestedKeys(keys: string[], value: any) {
     }
     return decodedValue;
   }
-
-  // Initialize an empty object
   const result: CustomObject = {};
-
-  // Get the first key from the array
   const [firstKey, ...restKeys] = keys;
-
-  // Recursively call setNestedKeys to build the nested structure
   result[firstKey] = setNestedKeys(restKeys, value);
-
   return result;
+}
+
+interface CookieAttributes {
+  expires?: number | Date | undefined;
+  path?: string | undefined;
+  domain?: string | undefined;
+  secure?: boolean | undefined;
+  sameSite?: "strict" | "Strict" | "lax" | "Lax" | "none" | "None" | undefined;
+}
+
+function setCookie(name: string, value: string, options?: CookieAttributes) {
+  let cookieString = `${encodeURIComponent(name)}=${encodeURIComponent(value)}`;
+
+  if (options) {
+    if (options.expires) {
+      if (typeof options.expires === "number") {
+        const date = new Date();
+        date.setTime(date.getTime() + options.expires * 24 * 60 * 60 * 1000); // Convert days to milliseconds
+        cookieString += `; expires=${date.toUTCString()}`;
+      } else if (options.expires instanceof Date) {
+        cookieString += `; expires=${options.expires.toUTCString()}`;
+      }
+    }
+    if (options.path) {
+      cookieString += `; path=${options.path}`;
+    }
+    if (options.domain) {
+      cookieString += `; domain=${options.domain}`;
+    }
+    if (options.secure) {
+      cookieString += `; secure`;
+    }
+    if (options.sameSite) {
+      cookieString += `; samesite=${options.sameSite}`;
+    }
+  }
+
+  // Set the cookie
+  document.cookie = cookieString;
+}
+
+// Function to delete a cookie
+function deleteCookie(name: string) {
+  document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 }
 
 export const cookieStorage: StateStorage = {
@@ -106,7 +141,7 @@ export const cookieStorage: StateStorage = {
 
     eachRecursive(jsonValue, (key: string, value: any) => {
       const _value = Array.isArray(value) ? JSON.stringify(value) : value;
-      Cookies.set(`${storeKey}${key}`, _value, {
+      setCookie(`${storeKey}${key}`, _value, {
         expires,
         path: "/",
       });
@@ -116,7 +151,7 @@ export const cookieStorage: StateStorage = {
     const keyCookies: Record<string, string> = getAllCookiesStartWith(key);
 
     Object.keys(keyCookies).forEach((k) => {
-      Cookies.remove(k);
+      deleteCookie(k);
     });
   },
 };

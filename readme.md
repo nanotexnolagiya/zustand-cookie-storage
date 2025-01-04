@@ -10,7 +10,6 @@
 
 - **Persist Zustand State in Cookies**: Save and load Zustand state from cookies automatically.
 - **Customizable**: Configure cookie attributes like `expires`, `path`, `secure`, and more.
-- **Server-Side Rendering Friendly**: Ideal for use in SSR frameworks such as Next.js.
 - **Lightweight**: Minimalistic design with a small footprint.
 
 ## Installation
