@@ -73,7 +73,7 @@ export function setCookie(
   value: string,
   options?: CookieAttributes
 ) {
-  let cookieString = `${encodeURIComponent(name)}=${encodeURIComponent(value)}`;
+  let cookieString = `${encodeName(name)}=${encodeValue(value)}`;
 
   if (options) {
     if (options.expires) {
@@ -107,3 +107,13 @@ export function setCookie(
 export function deleteCookie(name: string) {
   document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 }
+
+const encodeName = (name: string) =>
+  encodeURIComponent(name)
+  .replace(/%(2[346B]|5E|60|7C)/g, decodeURIComponent)
+
+const encodeValue = (value: string) =>
+  encodeURIComponent(value as string).replace(
+    /%(2[346BF]|3[AC-F]|40|5[BDE]|60|7[BCD])/g,
+    decodeURIComponent
+  )
